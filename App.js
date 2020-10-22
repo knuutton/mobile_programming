@@ -11,6 +11,8 @@ import ShoppingListFirebase from './components/ShoppingList_firebase';
 import Converter from './components/Converter';
 import RestFinder from './components/MapFinder_google';
 import MapFinder from './components/MapFinder_loc';
+import Contacts from './components/Contacts';
+import TextToSpeech from './components/TextToSpeech';
 
 
 import { NavigationContainer} from '@react-navigation/native';
@@ -34,6 +36,8 @@ export default function App() {
           <Stack.Screen name = "Find the nearby restaurants" component={RestFinder} />
           <Stack.Screen name = "Shopping List with DB" component={ShoppingListDB} />
           <Stack.Screen name = "Shopping List with Firebase" component={ShoppingListFirebase} />
+          <Stack.Screen name = "Contacts" component={Contacts} />
+          <Stack.Screen name = "TextToSpeech" component={TextToSpeech} />
         </Stack.Navigator>
       </NavigationContainer>
   );
