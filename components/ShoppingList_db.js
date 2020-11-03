@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react';
 import * as SQLite from 'expo-sqlite';
-import { StyleSheet, Text, View, Button, TextInput, FlatList} from 'react-native';
+import { StyleSheet, Text, View, FlatList} from 'react-native';
+import{ Input, Button, ListItem, Header, Icon } from 'react-native-elements';
 
-export default function ShoppingList() {
+export default function ShoppingList({navigation}) {
   const [product, setProduct] = React.useState('');
   const [amount, setAmount] = React.useState('');
   const [shopList, setShopList] = React.useState([]);
@@ -39,27 +40,45 @@ export default function ShoppingList() {
     }, null, updateList) 
   };
 
+  const renderItem = ({item}) => (
+    <ListItem bottomDivider >
+      <ListItem.Content>
+        <ListItem.Title>{item.product}</ListItem.Title>
+        <ListItem.Subtitle>{item.amount}</ListItem.Subtitle>
+      </ListItem.Content>
+      <ListItem.Chevron 
+          name='trash'
+          type='font-awesome'
+          color='#f50'
+          onPress={() => deleteItem(item.id)} />
+  </ListItem>
+  );
+
   return (
     <View style = {styles.container}>
-      <TextInput 
-          style = {styles.form}
+      <Header
+        leftComponent={<Icon type  ="material" name  = "home" onPress = {() => navigation.navigate('Home')} />}
+        centerComponent={{ text:'SHOPPING LIST', style:{ color: '#fff' } }}/>
+      <Input 
+          style ={{margin: 5}}
+          label='Product'
           placeholder = 'Product'
           value = {product} 
           onChangeText = {product => setProduct(product)}/>
-      <TextInput 
-          style = {styles.form}
+      <Input
+          style ={{margin: 5}} 
+          label='Amount'
           placeholder='Amount'
           value = {amount} 
           onChangeText = {amount => setAmount(amount)}/>
-      <Button title = "Add" onPress = {AddItem} />
-      <Text style = {{marginTop: 10, fontSize: 20}}>Shopping list</Text>
-      <FlatList
-        style = {{margin: '5%'}}
+      <Button 
+        raised icon ={{name: 'save'}} 
+        onPress = {AddItem}
+        title = "Add" />
+      <Text style = {{marginTop: 10, fontSize: 20, alignSelf: 'center'}}>Shopping list</Text>
+      <FlatList 
         keyExtractor = {item => item.id.toString()}
-        renderItem = {({item}) => 
-          <View style = {styles.listcontainer}><Text>{item.product}, {item.amount} </Text>
-            <Text style = {{color: '#0000ff'}} onPress={() => deleteItem(item.id)}>bought!</Text>
-          </ View>}
+        renderItem = {renderItem}
         data={shopList}
       />
     </View>
@@ -69,25 +88,6 @@ export default function ShoppingList() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
   },
-
-  listcontainer: {
-    flexDirection: 'row',
-    padding: 5,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-  },
-
-  form: {
-    width: 200, 
-    height: 30, 
-    borderColor: 'black', 
-    borderWidth: 1,
-  },
-
 });
-

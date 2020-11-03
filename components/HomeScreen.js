@@ -7,10 +7,8 @@ import { Entypo } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
-
-
 export default function HomeScreen({navigation}) {
-    
+
     return(
     <View style={styles.container}>
         <Text style = {styles.resulttext}>Simple applications developed on Mobile programming course</Text>
@@ -25,6 +23,7 @@ export default function HomeScreen({navigation}) {
         <Text style={styles.listItem} onPress={() => navigation.navigate('Shopping List with Firebase')}><MaterialCommunityIcons name="firebase" size={24} color="black" />   Shopping list with Firebase </Text>
         <Text style={styles.listItem} onPress={() => navigation.navigate('Contacts')}><AntDesign name="contacts" size={24} color="black" />   Contacts </Text>
         <Text style={styles.listItem} onPress={() => navigation.navigate('TextToSpeech')}><MaterialCommunityIcons name="text-to-speech" size={22} color="black" />   Text-To-Speech </Text>
+        <Text style={styles.listItem} onPress={() => navigation.navigate('FavAddresses')}><FontAwesome5 name="map-marked-alt" size={24} color="black" />   Favourite addresses </Text>
         <Text style={styles.listItem} ><AntDesign name="codesquareo" size={24} color="black" />    to be updated.. </Text>
       </View>
     );

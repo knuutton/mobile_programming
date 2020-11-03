@@ -7,12 +7,14 @@ import GuessGame from './components/GuessGame';
 import Recipelist from './components/RecipeList';
 import ShoppingList from './components/ShoppingList';
 import ShoppingListDB from './components/ShoppingList_db';
-import ShoppingListFirebase from './components/ShoppingList_firebase';
+import ShoppingListFirebase from './components/ShoppingList_firebase_UI';
 import Converter from './components/Converter';
 import RestFinder from './components/MapFinder_google';
 import MapFinder from './components/MapFinder_loc';
 import Contacts from './components/Contacts';
 import TextToSpeech from './components/TextToSpeech';
+import FavAddresses from './components/FavAddresses';
+import MapFinderFavor from './components/MapFinder_favor';
 
 
 import { NavigationContainer} from '@react-navigation/native';
@@ -34,10 +36,12 @@ export default function App() {
           <Stack.Screen name = "Converter" component={Converter} />
           <Stack.Screen name = "Find on the map" component={MapFinder} />
           <Stack.Screen name = "Find the nearby restaurants" component={RestFinder} />
-          <Stack.Screen name = "Shopping List with DB" component={ShoppingListDB} />
-          <Stack.Screen name = "Shopping List with Firebase" component={ShoppingListFirebase} />
+          <Stack.Screen name = "Shopping List with DB" component={ShoppingListDB} options = {{headerMode: 'none', headerShown: false,}} />
+          <Stack.Screen name = "Shopping List with Firebase" component={ShoppingListFirebase} options = {{headerMode: "none", headerShown: false,}} />
           <Stack.Screen name = "Contacts" component={Contacts} />
           <Stack.Screen name = "TextToSpeech" component={TextToSpeech} />
+          <Stack.Screen name = "FavAddresses" component={FavAddresses} options = {{headerMode: 'none', headerShown: false,}} />
+          <Stack.Screen name = "Map" component={MapFinderFavor} options = {{headerMode: 'none', headerShown: false,}}/>
         </Stack.Navigator>
       </NavigationContainer>
   );
